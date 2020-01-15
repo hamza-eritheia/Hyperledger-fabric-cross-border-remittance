@@ -1,0 +1,105 @@
+version: '2'
+
+services:
+
+  orderer.ucp.com:
+    container_name: orderer.ucp.com
+    extends:
+      file: peer-base.yaml
+      service: orderer-base
+    volumes:
+        - ../channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+        - ../crypto-config/ordererOrganizations/ucp.com/orderers/orderer.ucp.com/msp:/var/hyperledger/orderer/msp
+        - ../crypto-config/ordererOrganizations/ucp.com/orderers/orderer.ucp.com/tls/:/var/hyperledger/orderer/tls
+        - orderer.ucp.com:/var/hyperledger/production/orderer
+    ports:
+      - 7050:7050
+
+  peer0.org1.ucp.com:
+    container_name: peer0.org1.ucp.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.org1.ucp.com
+      - CORE_PEER_ADDRESS=peer0.org1.ucp.com:7051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.org1.ucp.com:7052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org1.ucp.com:8051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org1.ucp.com:7051
+      - CORE_PEER_LOCALMSPID=Org1MSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/org1.ucp.com/peers/peer0.org1.ucp.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/org1.ucp.com/peers/peer0.org1.ucp.com/tls:/etc/hyperledger/fabric/tls
+        - peer0.org1.ucp.com:/var/hyperledger/production
+    ports:
+      - 7051:7051
+
+  peer1.org1.ucp.com:
+    container_name: peer1.org1.ucp.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer1.org1.ucp.com
+      - CORE_PEER_ADDRESS=peer1.org1.ucp.com:8051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:8051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.org1.ucp.com:8052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:8052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org1.ucp.com:8051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.ucp.com:7051
+      - CORE_PEER_LOCALMSPID=Org1MSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/org1.ucp.com/peers/peer1.org1.ucp.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/org1.ucp.com/peers/peer1.org1.ucp.com/tls:/etc/hyperledger/fabric/tls
+        - peer1.org1.ucp.com:/var/hyperledger/production
+
+    ports:
+      - 8051:8051
+
+  peer0.org2.ucp.com:
+    container_name: peer0.org2.ucp.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.org2.ucp.com
+      - CORE_PEER_ADDRESS=peer0.org2.ucp.com:9051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:9051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.org2.ucp.com:9052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:9052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org2.ucp.com:9051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org2.ucp.com:10051
+      - CORE_PEER_LOCALMSPID=Org2MSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/org2.ucp.com/peers/peer0.org2.ucp.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/org2.ucp.com/peers/peer0.org2.ucp.com/tls:/etc/hyperledger/fabric/tls
+        - peer0.org2.ucp.com:/var/hyperledger/production
+    ports:
+      - 9051:9051
+
+  peer1.org2.ucp.com:
+    container_name: peer1.org2.ucp.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer1.org2.ucp.com
+      - CORE_PEER_ADDRESS=peer1.org2.ucp.com:10051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:10051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.org2.ucp.com:10052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:10052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org2.ucp.com:10051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org2.ucp.com:9051
+      - CORE_PEER_LOCALMSPID=Org2MSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/org2.ucp.com/peers/peer1.org2.ucp.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/org2.ucp.com/peers/peer1.org2.ucp.com/tls:/etc/hyperledger/fabric/tls
+        - peer1.org2.ucp.com:/var/hyperledger/production
+    ports:
+      - 10051:10051

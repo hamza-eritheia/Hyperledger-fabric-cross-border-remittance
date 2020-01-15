@@ -1,0 +1,72 @@
+version: '2'
+
+volumes:
+  orderer2.ucp.com:
+  orderer3.ucp.com:
+  orderer4.ucp.com:
+  orderer5.ucp.com:
+
+networks:
+  byfn:
+
+services:
+
+  orderer2.ucp.com:
+    extends:
+      file: base/peer-base.yaml
+      service: orderer-base
+    container_name: orderer2.ucp.com
+    networks:
+    - byfn
+    volumes:
+        - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+        - ./crypto-config/ordererOrganizations/ucp.com/orderers/orderer2.ucp.com/msp:/var/hyperledger/orderer/msp
+        - ./crypto-config/ordererOrganizations/ucp.com/orderers/orderer2.ucp.com/tls/:/var/hyperledger/orderer/tls
+        - orderer2.ucp.com:/var/hyperledger/production/orderer
+    ports:
+    - 8050:7050
+
+  orderer3.ucp.com:
+    extends:
+      file: base/peer-base.yaml
+      service: orderer-base
+    container_name: orderer3.ucp.com
+    networks:
+    - byfn
+    volumes:
+        - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+        - ./crypto-config/ordererOrganizations/ucp.com/orderers/orderer3.ucp.com/msp:/var/hyperledger/orderer/msp
+        - ./crypto-config/ordererOrganizations/ucp.com/orderers/orderer3.ucp.com/tls/:/var/hyperledger/orderer/tls
+        - orderer3.ucp.com:/var/hyperledger/production/orderer
+    ports:
+    - 9050:7050
+
+  orderer4.ucp.com:
+    extends:
+      file: base/peer-base.yaml
+      service: orderer-base
+    container_name: orderer4.ucp.com
+    networks:
+    - byfn
+    volumes:
+        - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+        - ./crypto-config/ordererOrganizations/ucp.com/orderers/orderer4.ucp.com/msp:/var/hyperledger/orderer/msp
+        - ./crypto-config/ordererOrganizations/ucp.com/orderers/orderer4.ucp.com/tls/:/var/hyperledger/orderer/tls
+        - orderer4.ucp.com:/var/hyperledger/production/orderer
+    ports:
+    - 10050:7050
+
+  orderer5.ucp.com:
+    extends:
+      file: base/peer-base.yaml
+      service: orderer-base
+    container_name: orderer5.ucp.com
+    networks:
+    - byfn
+    volumes:
+        - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+        - ./crypto-config/ordererOrganizations/ucp.com/orderers/orderer5.ucp.com/msp:/var/hyperledger/orderer/msp
+        - ./crypto-config/ordererOrganizations/ucp.com/orderers/orderer5.ucp.com/tls/:/var/hyperledger/orderer/tls
+        - orderer5.ucp.com:/var/hyperledger/production/orderer
+    ports:
+    - 11050:7050

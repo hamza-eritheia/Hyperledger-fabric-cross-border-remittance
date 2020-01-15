@@ -1,0 +1,88 @@
+---
+name: remittance-network-org1
+version: 1.0.0
+client:
+  organization: Org1
+  connection:
+    timeout:
+      peer:
+        endorser: '300'
+organizations:
+  Org1:
+    mspid: Org1MSP
+    peers:
+    - peer0.org1.ucp.com
+    - peer1.org1.ucp.com
+    certificateAuthorities:
+    - ca.org1.ucp.com
+peers:
+  peer0.org1.ucp.com:
+    url: grpcs://localhost:7051
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICRzCCAe6gAwIBAgIRAMS4vSq3CZN84s1dH/vzzTQwCgYIKoZIzj0EAwIwbjEL
+        MAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG
+        cmFuY2lzY28xFTATBgNVBAoTDG9yZzEudWNwLmNvbTEbMBkGA1UEAxMSdGxzY2Eu
+        b3JnMS51Y3AuY29tMB4XDTIwMDEwMjE0NTAwMFoXDTI5MTIzMDE0NTAwMFowbjEL
+        MAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG
+        cmFuY2lzY28xFTATBgNVBAoTDG9yZzEudWNwLmNvbTEbMBkGA1UEAxMSdGxzY2Eu
+        b3JnMS51Y3AuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE7wj2gQ9ApY7V
+        bwHFTlxNsLbCqAt5yImJ3k3EiBnTyYWOjolwClLH494HAxBhc0IpKXmQmzD1Avj9
+        OIDrQJFTvKNtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1UdJQQWMBQGCCsGAQUFBwMC
+        BggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1UdDgQiBCCn9yjy4fP1/W7X
+        /E7A88n7/qgUyxbkIEhYWpttFtEYnDAKBggqhkjOPQQDAgNHADBEAiA8A4eVQtO4
+        W89ndSThkXClHzLVi5wL0y+a5kpJJfFy2QIgEmMkY++C+kHzGQAHzpd1Zb07i7Mx
+        Y7vXHzb57vDbcrI=
+        -----END CERTIFICATE-----
+        
+    grpcOptions:
+      ssl-target-name-override: peer0.org1.ucp.com
+      hostnameOverride: peer0.org1.ucp.com
+  peer1.org1.ucp.com:
+    url: grpcs://localhost:8051
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICRzCCAe6gAwIBAgIRAMS4vSq3CZN84s1dH/vzzTQwCgYIKoZIzj0EAwIwbjEL
+        MAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG
+        cmFuY2lzY28xFTATBgNVBAoTDG9yZzEudWNwLmNvbTEbMBkGA1UEAxMSdGxzY2Eu
+        b3JnMS51Y3AuY29tMB4XDTIwMDEwMjE0NTAwMFoXDTI5MTIzMDE0NTAwMFowbjEL
+        MAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG
+        cmFuY2lzY28xFTATBgNVBAoTDG9yZzEudWNwLmNvbTEbMBkGA1UEAxMSdGxzY2Eu
+        b3JnMS51Y3AuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE7wj2gQ9ApY7V
+        bwHFTlxNsLbCqAt5yImJ3k3EiBnTyYWOjolwClLH494HAxBhc0IpKXmQmzD1Avj9
+        OIDrQJFTvKNtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1UdJQQWMBQGCCsGAQUFBwMC
+        BggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1UdDgQiBCCn9yjy4fP1/W7X
+        /E7A88n7/qgUyxbkIEhYWpttFtEYnDAKBggqhkjOPQQDAgNHADBEAiA8A4eVQtO4
+        W89ndSThkXClHzLVi5wL0y+a5kpJJfFy2QIgEmMkY++C+kHzGQAHzpd1Zb07i7Mx
+        Y7vXHzb57vDbcrI=
+        -----END CERTIFICATE-----
+        
+    grpcOptions:
+      ssl-target-name-override: peer1.org1.ucp.com
+      hostnameOverride: peer1.org1.ucp.com
+certificateAuthorities:
+  ca.org1.ucp.com:
+    url: https://localhost:7054
+    caName: ca-org1
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICQjCCAeigAwIBAgIRALfmOGn/qAzY2ZPQbp/LWKkwCgYIKoZIzj0EAwIwazEL
+        MAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG
+        cmFuY2lzY28xFTATBgNVBAoTDG9yZzEudWNwLmNvbTEYMBYGA1UEAxMPY2Eub3Jn
+        MS51Y3AuY29tMB4XDTIwMDEwMjE0NTAwMFoXDTI5MTIzMDE0NTAwMFowazELMAkG
+        A1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBGcmFu
+        Y2lzY28xFTATBgNVBAoTDG9yZzEudWNwLmNvbTEYMBYGA1UEAxMPY2Eub3JnMS51
+        Y3AuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEuCphmPtqn+IptaPWugJ1
+        PKI7P3bAv15c6L/H/cL2c7AQA/eDQf9uLl230fCDX+4aOqkG7WQCRaR2Bog1FDUy
+        L6NtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEF
+        BQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1UdDgQiBCDrcqQvuhWJPNLlo+jd3RDV
+        cuReXjIVrfRr/AkCpxtgXzAKBggqhkjOPQQDAgNIADBFAiEAwTx/ZW7wdhBrguye
+        29F8ZRCAqiiIGC4Wq/C3/DgLNNwCICgrP0Y2LQcLuzzApEudGcF1qkZos2tNqqJR
+        mJL9A1Jp
+        -----END CERTIFICATE-----
+        
+    httpOptions:
+      verify: false
