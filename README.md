@@ -3,7 +3,8 @@
 ## Hyperledger Fabric based Cross-Border Remittance
 
 ![Node Version](https://img.shields.io/badge/nodejs-%3E%3D%208.9.0-orange)
-[![Follow Developer](https://img.shields.io/twitter/follow/heisunberg_?label=Owner&style=social)](https://twitter.com/Heisunberg_?ref_src=twsrc%5Etfw)
+[![Twitter Url](https://img.shields.io/twitter/follow/heisunberg_?label=Owner&style=social)](https://twitter.com/Heisunberg_?ref_src=twsrc%5Etfw)
+[![Facebook Url](https://img.shields.io/twitter/url?label=Facebook&logo=facebook&logoColor=blue&style=social&url=https://www.facebook.com/heisunberg)](https://www.facebook.com/heisunberg)
 
 ### Setting up the Project
 
