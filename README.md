@@ -38,5 +38,3 @@ to ensure you have the correct prerequisites installed.
   hamza@host:~/remittance-network$ cd ../Server/
   hamza@host:~/Server$ node server.js
   ```
-  
-
