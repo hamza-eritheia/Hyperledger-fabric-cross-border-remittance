@@ -12,3 +12,9 @@ curl -X DELETE "http://localhost:3000/posts/1/comments/1"; echo
 curl "http://localhost:3000/posts/1/comments"; echo; echo
 
 curl -H 'Content-Type: application/json' -X POST -d '{"from": "mcb", "to": "BankOfChina", "sender": "Guru Jee", "reciever": "Osama", "tx": "Tx #2", "txDate": "21 Dec", "amount": "100", "fx": "1.0", "final": "1"}' "http://localhost:3000/transactions/1"
+
+curl -H 'Content-Type: application/json' -X POST -d '{"userId": 1, "firstName": "Hamza", "lastName": "Awan", "password": "123"}' "http://localhost:3000/user"
+curl -H 'Content-Type: application/json' -X POST -d '{"userName": "6",  "password": "123"}' "http://localhost:3000/user/login"
+curl -X DELETE "http://localhost:3000/user/5"
+curl -H 'Content-Type: application/json' -X PUT -d '{"lastName": "Aamir"}' "http://localhost:3000/user/1"
+curl "http://localhost:3000/user/1"

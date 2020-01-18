@@ -6,27 +6,10 @@ const ip = require('ip');
 const app = express()
 const routes = require('./routes')
 
-// let store = {
-//   posts: [{
-//     name: "",
-//     url: "",
-//     text: "",
-//     comments: [{
-//       text: ""
-//     }]
-//   }]
-// }
-
-
-
 async function main() {
     routes.generateIdentities();
 
     app.use(bodyParser.json(), bodyParser.urlencoded({ extended: true }), logger('dev'), errorHandler())
-    // app.use((req, resp, next) => {
-    //   req.store = store
-    //   next()
-    // })
 
     //Transactions
     app.get('/transactions/:bankId/out', (req, resp) => {
@@ -49,19 +32,19 @@ async function main() {
 
     //Users
     app.post('/user', (req, resp) => {
-
+        routes.users.createUser(req, resp)
     })
     app.get('/user/:userName', (req, resp) => {
-    
+        routes.users.getUser(req, resp)
     })
     app.put('/user/:userName', (req, resp) => {
-    
+        routes.users.updateUser(req, resp)
     })
     app.delete('/user/:userName', (req, resp) => {
-    
+        routes.users.deleteUser(req, resp)
     })
     app.post('/user/login', (req, resp) => {
-    
+        routes.users.authenticate(req, resp)
     })
     app.get('/user/logout', (req, resp) => {
     
