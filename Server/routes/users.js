@@ -1,5 +1,9 @@
+require('dotenv').config()
+
 const ldap = require('ldapjs')
 const Promise = require('bluebird')
+//const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 const ldapOptions = {
     url: "ldap://localhost:389",
     connectTimeout: 30000,
@@ -130,8 +134,12 @@ let loginUser = (userId, password) => {
 }
 
 const createUser = (req, resp) => {
+    //const salt = await bcrypt.genSalt()
+    //const hashedPassword = await bcrypt.hash(req.body.password, 10)
+    //console.log(salt)
+    //console.log(hashedPassword)
     addUser(req.body.userId, req.body.firstName, req.body.lastName, req.body.password)
-    .then((res) => resp.status(201).send("User Created Successfully!!\n"), (err) => resp.sendStatus(401))
+    .then((res) => resp.status(201).send("Created Successfull!!\n"), (err) => resp.sendStatus(401))
 }
 
 const getUser = (req, resp) => {
@@ -159,8 +167,17 @@ const deleteUser = (req, resp) => {
 }
 
 const authenticate = (req, resp) => {
-    loginUser(req.body.userName, req.body.password)
-    .then((res) => resp.status(201).send("Login Successfull!!\n"), (err) => resp.status(400).send("Password didnt matched!!\n"))
+    try{
+        loginUser(req.body.userName, req.body.password)
+        .then((res) => {
+            const accessToken = jwt.sign( {name: req.body.userName}, process.env.ACCESS_TOKEN_SECRET)
+            resp.status(201).json({accessToken: accessToken})
+            
+        }, (err) => resp.status(401).send({message: "Password didnt matched!!\n"}))
+    }
+    catch(err) {
+        resp.status(400).send(err)
+    }
 }
 
 module.exports = {

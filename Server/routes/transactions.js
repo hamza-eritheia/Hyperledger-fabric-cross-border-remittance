@@ -201,7 +201,7 @@ const submitTrans = async (req, resp) => {
     const sender = req.body.sender;
     const reciever = req.body.reciever;
     const tx = req.body.tx;
-    const txDate = req.body.date;
+    const txDate = req.body.txDate;
     const amount = req.body.amount;
 
     try{
@@ -229,12 +229,12 @@ const submitTrans = async (req, resp) => {
             const res = await issue(from, to, sender, reciever, tx, txDate, amount, req.body.fx, req.body.final)
             console.log(res.toString());
 
-            resp.sendStatus(201);
+            resp.send(JSON.stringify({Message : `Transaction with number ${tx} has been submitted successfully on ${txDate}`}));
         }
     }
     catch(err) {
-        console.log(err)
-        resp.send({error: err}).status(404)
+        console.log(err.endorsements[1])
+        resp.status(500).send(err.endorsements[1])
     }
 }
 

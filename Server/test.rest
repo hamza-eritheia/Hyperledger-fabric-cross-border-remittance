@@ -1,0 +1,39 @@
+#Transaction Requests
+
+POST http://localhost:3000/transactions/1
+Content-Type: application/json
+
+{"from": "Mcb", "to": "BankOfChina", "sender": "Guru Jee", "reciever": "Osama", "tx": "Tx #9", "txDate": "21 Dec", "amount": "100", "fx": "1.0", "final": "1"}
+
+###
+GET http://localhost:3000/transactions/1/out
+
+###
+#User Requests
+
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{"userId": "6", "firstName": "Hamza", "lastName": "Aamir", "password": "123"}
+
+###
+
+POST http://localhost:3000/user/login
+Content-Type: application/json
+
+{"userName": "6",  "password": "123"}
+
+###
+
+PUT http://localhost:3000/user/1
+Content-Type: application/json
+{"lastName": "Aamir"}
+
+###
+
+DELETE http://localhost:3000/user/6
+
+###
+
+GET http://localhost:3000/user/6
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiNiIsImlhdCI6MTU3OTYyNTYxMX0.6PV3FLpyGYoZqZDfkq_-GVyR0xrHOpPiMiIYrOPB5P8

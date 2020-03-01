@@ -1,7 +1,7 @@
 {
     "name": "remittance",
     "version": "1.0.0",
-    "description": "Remittance application implemented in JavaScript",
+    "description": "Remittance application implemented in JavaScript for Org2",
     "engines": {
         "node": ">=8",
         "npm": ">=5"
@@ -15,11 +15,8 @@
     "author": "Hyperledger",
     "license": "Apache-2.0",
     "dependencies": {
-        "bcrypt": "^3.0.7",
-        "bluebird": "^3.7.2",
         "fabric-ca-client": "~1.4.0",
-        "fabric-network": "~1.4.0",
-        "ldapjs": "^1.0.2"
+        "fabric-network": "~1.4.0"
     },
     "devDependencies": {
         "chai": "^4.2.0",

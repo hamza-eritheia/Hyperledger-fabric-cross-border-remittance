@@ -1,3 +1,5 @@
 **/node_modules
 **/bin
 **/wallet
+**/channel-artifacts
+**/crypto-config
