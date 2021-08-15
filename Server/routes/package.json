@@ -15,7 +15,7 @@
     "author": "Hyperledger",
     "license": "Apache-2.0",
     "dependencies": {
-        "bcrypt": "^3.0.7",
+        "bcrypt": "^5.0.0",
         "bluebird": "^3.7.2",
         "fabric-ca-client": "~1.4.0",
         "fabric-network": "~1.4.0",
